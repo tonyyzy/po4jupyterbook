@@ -1,3 +1,4 @@
 #!/bin/sh
-/usr/bin/python3 tools/createpot.py
-/usr/bin/python3 tools/updatepo.py
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+python3 ${DIR}/tools/createpot.py
+python3 ${DIR}/tools/updatepo.py
