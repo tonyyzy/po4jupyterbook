@@ -181,7 +181,7 @@ class PFMMain:
                 break
 
             # create pot file per directory
-            filename = filename[:-1]
+            filename = filename.strip()
             dstr = '/' in filename and filename.split('/')[0] or 'doc-root'
 
             # if directory has changed

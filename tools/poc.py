@@ -237,7 +237,7 @@ class PoCompiler:
         for mdfn in sorted(mdlist.keys()):
             mdfo = mdlist.get(mdfn)
             tpath = '{}/{}/{}'.format(self.outputdir, self.clocale,
-                                      mdfn.split('/')[0])
+                                      os.path.dirname(mdfn))
             if not os.path.exists(tpath) and '/' in mdfn:
                 os.makedirs(tpath, 0o755)
 
@@ -290,8 +290,8 @@ class PoCompiler:
             print('OK')
 
     def run(self):
-        cll = open('{}/LINGUAS'.format(self.sourcedir), 'r').readline()
-        self.langlist = cll[:-1].split(' ')
+        cll = open('{}/LINGUAS'.format(self.sourcedir), 'r').readlines()
+        self.langlist = [lang.strip() for lang in cll]
 
         for lang in self.langlist:
             polist = glob.glob('{}/*.{}.po'.format(self.sourcedir, lang))
