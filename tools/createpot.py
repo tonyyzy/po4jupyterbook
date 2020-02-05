@@ -37,24 +37,24 @@ class PFMMain:
         time.sleep(1)
 
         # list all md files on the document root
-        files = glob.glob(os.getcwd() + '/*.md')
+        files = glob.glob(os.getcwd() + '/**/*.md', recursive=True)
         files.sort()
 
         for file in files:
             print('{} is found'.format(file.replace(self.cwd, '')))
             outfile.write(file.replace(self.cwd, '') + '\n')
 
-        dirs = os.listdir(os.getcwd())
-        dirs.sort()
+        # dirs = os.listdir(os.getcwd())
+        # dirs.sort()
 
-        for dirn in dirs:
-            if os.path.isdir(dirn):
-                mdfiles = glob.glob('{}{}/*.md'.format(self.cwd, dirn))
-                mdfiles.sort()
+        # for dirn in dirs:
+        #     if os.path.isdir(dirn):
+        #         mdfiles = glob.glob('{}{}/*.md'.format(self.cwd, dirn))
+        #         mdfiles.sort()
 
-                for mdfile in mdfiles:
-                    print('{} is found'.format(mdfile.replace(self.cwd, '')))
-                    outfile.write(mdfile.replace(self.cwd, '') + '\n')
+        #         for mdfile in mdfiles:
+        #             print('{} is found'.format(mdfile.replace(self.cwd, '')))
+        #             outfile.write(mdfile.replace(self.cwd, '') + '\n')
 
         print('File list is saved to po/POTFILES.in\n')
         outfile.close()
