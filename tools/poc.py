@@ -119,7 +119,8 @@ class PoCompiler:
                 if not exist_copyright:
                     raise CopyrightException()
                 if not exist_credit:
-                    raise MissingCreditException()
+                    pass
+                    # raise MissingCreditException()
 
             # check po meta header
             elif pt == 'headermeta':
