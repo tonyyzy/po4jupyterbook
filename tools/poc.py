@@ -303,7 +303,7 @@ class PoCompiler:
                 print('Compiling {} ...'.format(po))
                 self.f = open(po, 'r')
 
-                self.verify()
+                # self.verify()
                 self.analysis()
                 self.compile()
                 self.f.close()
