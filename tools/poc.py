@@ -7,7 +7,7 @@ import os
 import re
 from datetime import datetime
 
-# from dateutil.tz import tzlocal
+from dateutil.tz import tzlocal
 from pfm.fileobj.mdfile import MdFile
 from pfm.fileobj.pofile import PoFile
 from pfm.fileobj.pomsg import PoMessage
@@ -117,7 +117,8 @@ class PoCompiler:
             # if now is on msgid "", msgstr "" header
             elif pt == 'msgheader':
                 if not exist_copyright:
-                    raise CopyrightException()
+                    pass
+                    # raise CopyrightException()
                 if not exist_credit:
                     pass
                     # raise MissingCreditException()
@@ -128,17 +129,20 @@ class PoCompiler:
                 keyval = poline[1:-3].split(': ')
                 if keyval[0] == 'Language':
                     if keyval[1] != self.clocale:
-                        raise LocaleMismatchException(keyval[1], self.clocale)
+                        pass
+                        # raise LocaleMismatchException(keyval[1], self.clocale)
                 elif keyval[0] == 'Last-Translator':
                     name = keyval[1].split('<')[0].strip()
                     email = keyval[1].split('<')[1].split('>')[0].strip()
                     if self.last_trans_name[-1] != name \
                             and self.last_trans_email[-1] != email:
-                        raise CreditMismatchException()
+                        pass
+                        # raise CreditMismatchException()
                 elif keyval[0] == 'Language-Team':
                     if not re.match(r'{}'.format(self.langteam), poline) or \
                        poline == '\"Language-Team: LANGUAGE <LL@li.org>\n\"':
-                        raise LangTeamMissingException()
+                       pass
+                        # raise LangTeamMissingException()
 
     def get_msg_set(self, poline):
         msgid = poline[:-2].split(' "')[1]
@@ -303,7 +307,7 @@ class PoCompiler:
                 print('Compiling {} ...'.format(po))
                 self.f = open(po, 'r')
 
-                # self.verify()
+                self.verify()
                 self.analysis()
                 self.compile()
                 self.f.close()
