@@ -7,7 +7,7 @@ import os
 import re
 from datetime import datetime
 
-from dateutil.tz import tzlocal
+# from dateutil.tz import tzlocal
 from pfm.fileobj.mdfile import MdFile
 from pfm.fileobj.pofile import PoFile
 from pfm.fileobj.pomsg import PoMessage
